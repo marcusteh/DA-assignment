@@ -1,51 +1,48 @@
 # Task Manager API
 
 ## Overview
-Brief description of your Task Manager API implementation.
 
 The Task Manager API is a backend service built using Spring Boot that provides CRUD operations for managing tasks. It supports task creation, retrieval, updating, deletion, and querying via RESTful endpoints.
 The project includes structured exception handling, service-layer abstractions, validation, database persistence with MySQL, API documentation (OpenAPI/Swagger), and a CI/CD pipeline with automated testing and coverage reporting.
 
 ## Architecture
-Describe your architectural decisions and design patterns used.
 
-API Layer:
-api/TasksApi
-Generated from OpenAPI and implemented by controller.
+1. API Layer:
+⋅⋅⋅⋅* api/TasksApi
+⋅⋅⋅⋅* Generated from OpenAPI and implemented by controller.
 
-Controller Layer:
-controller/TasksApiController.java
-Handles incoming HTTP requests and forwards logic to the Service layer.
+2. Controller Layer:
+⋅⋅⋅⋅* controller/TasksApiController.java
+⋅⋅⋅⋅* Handles incoming HTTP requests and forwards logic to the Service layer.
 
-Service Layer:
-service/TaskService.java
-service/TaskServiceImpl.java
-Contains the main business logic, validation, and task-handling operations.
+3. Service Layer:
+⋅⋅⋅⋅* service/TaskService.java
+⋅⋅⋅⋅* service/TaskServiceImpl.java
+⋅⋅⋅⋅* Contains the main business logic, validation, and task-handling operations.
 
-Repository Layer:
-repository/TaskRepository.java
-Uses Spring Data JPA to interact with the MySQL database.
+4. Repository Layer:
+⋅⋅⋅⋅* repository/TaskRepository.java
+⋅⋅⋅⋅* Uses Spring Data JPA to interact with the MySQL database.
 
-Entity Layer:
-entity/TaskEntity.java
-Defines the database structure for tasks.
+5. Entity Layer:
+⋅⋅⋅⋅* entity/TaskEntity.java
+⋅⋅⋅⋅* Defines the database structure for tasks.
 
-DTO & Model Layer:
-model/Task.java – response model
-model/TaskRequest.java – request DTO
-model/Error.java – error response
+6. DTO & Model Layer:
+⋅⋅⋅⋅* model/Task.java – response model
+⋅⋅⋅⋅* model/TaskRequest.java – request DTO
+⋅⋅⋅⋅* model/Error.java – error response
 
-Mapper Layer:
-mapper/TaskMapper.java
-Handles conversions between Entity,Model and DTO.
+7. Mapper Layer:
+⋅⋅⋅⋅* mapper/TaskMapper.java
+⋅⋅⋅⋅* Handles conversions between Entity,Model and DTO.
 
-Exception Handling:
-exception/NotFoundException.java
-exception/GlobalExceptionHandler.java
-All API errors return clean JSON responses.
+8. Exception Handling:
+⋅⋅⋅⋅* exception/NotFoundException.java
+⋅⋅⋅⋅* exception/GlobalExceptionHandler.java
+⋅⋅⋅⋅* All API errors return clean JSON responses.
 
 ## Prerequisites
-List any prerequisites needed to run your application (Docker, Java version, etc.)
 ### Technology Stack
 - **Java**: 21
 - **Framework**: Spring Boot 3.5+
@@ -68,22 +65,13 @@ List any prerequisites needed to run your application (Docker, Java version, etc
 I generated a Task Manager.postman_collection.json from postman too but is similar to the one already provided.
 
 ## Testing
-Describe your testing strategy and how to run tests.
-
-### Unit Tests
-```bash
-./gradlew test
-```
-
-### Integration Tests
-```bash
-./gradlew integrationTest
-```
 I run all tests and generate coverage with one combined command:
 open a terminal cd to the project root location,
-run the cmd : 
-./gradlew clean test jacocoTestReport
 
+### Unit  & Integration Tests
+```bash
+./gradlew clean test jacocoTestReport
+```
 Test Coverage Includes:
 TaskmanagerApplicationTests.java
 Ensures the Spring Boot application context can start properly.
@@ -115,13 +103,9 @@ Spring Data JPA automatically handles table creation if spring.jpa.hibernate.ddl
 | `created_at`  | TIMESTAMP, NOT NULL         | Auto-assigned when row is first created          |
 | `updated_at`  | TIMESTAMP, NOT NULL         | Auto-updated when row is modified                |
 
-Migration Approach:
-For now, the project relies on Hibernate auto-generation via:
-spring.jpa.hibernate.ddl-auto=update
-
-This means:
-Tables are created/updated automatically based on your entity.
-No manual SQL or migration tool is needed during development.
+1. Migration Approach:
+⋅⋅⋅⋅* For now, the project relies on Hibernate auto-generation via: spring.jpa.hibernate.ddl-auto=update
+⋅⋅⋅⋅* This means,Tables are created/updated automatically based on your entity.No manual SQL or migration tool is needed during development.
 
 ## Observability (if implemented)
 - **Metrics**: Available at `/actuator/prometheus`
@@ -129,25 +113,24 @@ No manual SQL or migration tool is needed during development.
 - **Prometheus**: Access at `http://localhost:9090`
 
 ## CI/CD Pipeline
-Describe your continuous integration setup and deployment strategy.
 
-This project includes a GitHub Actions workflow that will:
+* This project includes a GitHub Actions workflow that will:
 
-Run on every push to main
-Spin up MySQL as a service
-Wait for MySQL to be ready
-Build the project using Gradle
-Run unit tests + integration tests
+⋅⋅⋅⋅* Run on every push to main
+⋅⋅⋅⋅* Spin up MySQL as a service
+⋅⋅⋅⋅* Wait for MySQL to be ready
+⋅⋅⋅⋅* Build the project using Gradle
+⋅⋅⋅⋅* Run unit tests + integration tests
 
-I assume that there's only one branch (main), understanding that not a really good practice, as it should have its own development/feature branch. But in the pipeline we can edit the to add more branches to allow the pipeline to run too:
-on:
+⋅⋅⋅⋅* I assume that there's only one branch (main), understanding that not a really good practice, as it should have its own development/feature branch. But in the pipeline we can edit the to add more branches to allow the pipeline to run too:
+`on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+`
 
 ## Assumptions Made
-List any assumptions you made during development:
 - No authentication/authorization (public API).
 
 - All task operations are for a single user context.
@@ -157,7 +140,6 @@ List any assumptions you made during development:
 - Input is expected to follow the OpenAPI specification.
 
 ## Known Limitations
-List any known limitations or areas for improvement:
 - No user accounts or login system. 
 - No authentication/authorization which might allow DDOS / spams
 - No soft delete; deleted tasks are removed permanently.
@@ -169,7 +151,6 @@ List any known limitations or areas for improvement:
 - Java 21
 - MySQL 8+
 - Docker & Docker Compose
-- [Any additional technologies used]
 
 ## Author
 Marcus Teh - [marcusforuni@gmail.com]
