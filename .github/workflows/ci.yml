@@ -56,13 +56,14 @@ jobs:
             echo "Waiting for MySQL..."
             sleep 5
           done
-          
+
       - name: Run Tests & Coverage (Unit + Integration)
         env:
           SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/testdb?useSSL=false&allowPublicKeyRetrieval=true
           SPRING_DATASOURCE_USERNAME: test
           SPRING_DATASOURCE_PASSWORD: test
-        run: ./gradlew clean test jacocoTestReport --no-daemon
+        # run: ./gradlew clean test jacocoTestReport --no-daemon
+        run : ./gradlew clean test jacocoTestReport
 
       - name: Ensure Jacoco Report Folder Exists
         run: mkdir -p build/reports/jacoco/test/html
