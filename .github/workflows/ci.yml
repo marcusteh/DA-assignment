@@ -59,12 +59,12 @@ jobs:
 
       - name: Ensure Jacoco Report Folder Exists
         run: mkdir -p build/reports/jacoco/test/html
-        
+
       - name: Upload Coverage Report
         uses: actions/upload-artifact@v4
         with:
           name: jacoco-report
-          path: build/reports/jacoco/test/html
+          path: build/jacocoHtml
 
   docker-build:
     name: Build Docker Image
