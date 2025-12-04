@@ -39,10 +39,26 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
+// jacocoTestReport {
+//     reports {
+//         xml.required = true
+//         csv.required = false
+//         html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+//     }
+// }
 jacocoTestReport {
+    dependsOn test
     reports {
         xml.required = true
         csv.required = false
+        html.required = true
         html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+    }
+    afterEvaluate {
+        classDirectories.setFrom(
+            files(classDirectories.files.collect { 
+                fileTree(dir: it, exclude: ['**/YourExcludedClasses*']) 
+            })
+        )
     }
 }

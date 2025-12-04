@@ -50,6 +50,13 @@ jobs:
       - name: Grant Permission to Gradle Wrapper
         run: chmod +x gradlew
 
+      - name: Wait for MySQL
+        run: |
+          until mysqladmin ping -h "127.0.0.1" -P 3306 -u test -ptest --silent; do
+            echo "Waiting for MySQL..."
+            sleep 5
+          done
+          
       - name: Run Tests & Coverage (Unit + Integration)
         env:
           SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/testdb?useSSL=false&allowPublicKeyRetrieval=true
