@@ -1,0 +1,8 @@
+.openapi-generator-ignore
+README.md
+pom.xml
+src/main/java/com/example/taskapi/api/ApiUtil.java
+src/main/java/com/example/taskapi/api/TasksApi.java
+src/main/java/com/example/taskapi/model/Error.java
+src/main/java/com/example/taskapi/model/Task.java
+src/main/java/com/example/taskapi/model/TaskRequest.java
