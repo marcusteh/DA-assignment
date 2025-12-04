@@ -57,6 +57,9 @@ jobs:
           SPRING_DATASOURCE_PASSWORD: test
         run: ./gradlew clean test jacocoTestReport --no-daemon
 
+      - name: Ensure Jacoco Report Folder Exists
+        run: mkdir -p build/reports/jacoco/test/html
+        
       - name: Upload Coverage Report
         uses: actions/upload-artifact@v4
         with:
@@ -76,6 +79,9 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
+
+      - name: Make Gradle wrapper executable
+        run: chmod +x ./gradlew
 
       - name: Build JAR
         run: ./gradlew bootJar
