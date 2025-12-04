@@ -8,39 +8,39 @@ The project includes structured exception handling, service-layer abstractions, 
 ## Architecture
 
 1. API Layer:
-⋅⋅⋅⋅* api/TasksApi
-⋅⋅⋅⋅* Generated from OpenAPI and implemented by controller.
+- api/TasksApi
+- Generated from OpenAPI and implemented by controller.
 
 2. Controller Layer:
-⋅⋅⋅⋅* controller/TasksApiController.java
-⋅⋅⋅⋅* Handles incoming HTTP requests and forwards logic to the Service layer.
+- controller/TasksApiController.java
+- Handles incoming HTTP requests and forwards logic to the Service layer.
 
 3. Service Layer:
-⋅⋅⋅⋅* service/TaskService.java
-⋅⋅⋅⋅* service/TaskServiceImpl.java
-⋅⋅⋅⋅* Contains the main business logic, validation, and task-handling operations.
+- service/TaskService.java
+- service/TaskServiceImpl.java
+- Contains the main business logic, validation, and task-handling operations.
 
 4. Repository Layer:
-⋅⋅⋅⋅* repository/TaskRepository.java
-⋅⋅⋅⋅* Uses Spring Data JPA to interact with the MySQL database.
+- repository/TaskRepository.java
+- Uses Spring Data JPA to interact with the MySQL database.
 
 5. Entity Layer:
-⋅⋅⋅⋅* entity/TaskEntity.java
-⋅⋅⋅⋅* Defines the database structure for tasks.
+- entity/TaskEntity.java
+- Defines the database structure for tasks.
 
 6. DTO & Model Layer:
-⋅⋅⋅⋅* model/Task.java – response model
-⋅⋅⋅⋅* model/TaskRequest.java – request DTO
-⋅⋅⋅⋅* model/Error.java – error response
+- model/Task.java – response model
+- model/TaskRequest.java – request DTO
+- model/Error.java – error response
 
 7. Mapper Layer:
-⋅⋅⋅⋅* mapper/TaskMapper.java
-⋅⋅⋅⋅* Handles conversions between Entity,Model and DTO.
+- mapper/TaskMapper.java
+- Handles conversions between Entity,Model and DTO.
 
 8. Exception Handling:
-⋅⋅⋅⋅* exception/NotFoundException.java
-⋅⋅⋅⋅* exception/GlobalExceptionHandler.java
-⋅⋅⋅⋅* All API errors return clean JSON responses.
+- exception/NotFoundException.java
+- exception/GlobalExceptionHandler.java
+- All API errors return clean JSON responses.
 
 ## Prerequisites
 ### Technology Stack
@@ -104,8 +104,8 @@ Spring Data JPA automatically handles table creation if spring.jpa.hibernate.ddl
 | `updated_at`  | TIMESTAMP, NOT NULL         | Auto-updated when row is modified                |
 
 1. Migration Approach:
-⋅⋅⋅⋅* For now, the project relies on Hibernate auto-generation via: spring.jpa.hibernate.ddl-auto=update
-⋅⋅⋅⋅* This means,Tables are created/updated automatically based on your entity.No manual SQL or migration tool is needed during development.
+- For now, the project relies on Hibernate auto-generation via: spring.jpa.hibernate.ddl-auto=update
+- This means,Tables are created/updated automatically based on your entity.No manual SQL or migration tool is needed during development.
 
 ## Observability (if implemented)
 - **Metrics**: Available at `/actuator/prometheus`
@@ -116,13 +116,13 @@ Spring Data JPA automatically handles table creation if spring.jpa.hibernate.ddl
 
 * This project includes a GitHub Actions workflow that will:
 
-⋅⋅⋅⋅* Run on every push to main
-⋅⋅⋅⋅* Spin up MySQL as a service
-⋅⋅⋅⋅* Wait for MySQL to be ready
-⋅⋅⋅⋅* Build the project using Gradle
-⋅⋅⋅⋅* Run unit tests + integration tests
+- Run on every push to main
+- Spin up MySQL as a service
+- Wait for MySQL to be ready
+- Build the project using Gradle
+- Run unit tests + integration tests
 
-⋅⋅⋅⋅* I assume that there's only one branch (main), understanding that not a really good practice, as it should have its own development/feature branch. But in the pipeline we can edit the to add more branches to allow the pipeline to run too:
+- I assume that there's only one branch (main), understanding that not a really good practice, as it should have its own development/feature branch. But in the pipeline we can edit the to add more branches to allow the pipeline to run too:
 `on:
   push:
     branches: [ main ]
