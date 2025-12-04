@@ -1,0 +1,123 @@
+{
+	"info": {
+		"_postman_id": "5ec10bdf-7aee-48a8-a245-0060a10de65d",
+		"name": "Task Manager",
+		"description": "StartFragmentComplete collection for testing the Task Manager API endpointsEndFragment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "48224559",
+		"_collection_link": "https://marcusforworks-5070053.postman.co/workspace/8b1bcd89-a11b-4c74-8cd7-5942dd0e3f48/collection/48224559-5ec10bdf-7aee-48a8-a245-0060a10de65d?action=share&source=collection_link&creator=48224559"
+	},
+	"item": [
+		{
+			"name": "Get All Task",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/tasks",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"tasks"
+					]
+				},
+				"description": "Get all task in db"
+			},
+			"response": []
+		},
+		{
+			"name": "Add Task",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"Complete project documentation\",\r\n  \"description\": \"Write comprehensive documentation for the task management API\",\r\n  \"completed\": false\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/tasks",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"tasks"
+					]
+				},
+				"description": "Add new task in db"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Specific Task using id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/tasks/4",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"tasks",
+						"4"
+					]
+				},
+				"description": "Get specific task using task id"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Task using id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"Complete project documentation\",\r\n  \"description\": \"Write comprehensive documentation for the task management API\",\r\n  \"completed\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/tasks/4",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"tasks",
+						"4"
+					]
+				},
+				"description": "Update specific task using task id"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Task using id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/tasks/4",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"tasks",
+						"4"
+					]
+				},
+				"description": "Delete task using id"
+			},
+			"response": []
+		}
+	]
+}
